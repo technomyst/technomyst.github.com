@@ -1,0 +1,33 @@
+<html>
+    
+    <head>
+         
+        <title>Using media events to add a progress bar to an audio player</title>
+        <!-- Uncomment the following meta tag if you have issues rendering this page on an intranet site. -->    
+        <!--  <meta http-equiv="X-UA-Compatible" content="IE=9"/> --> 
+        <style id="inlinecss" type="text/css">
+            /* put a border around the canvas element */
+            #canvas  
+            {
+                margin-top:10px; 
+                border-style:solid; 
+                border-width:1px; 
+                padding:3px; 
+            }
+        </style>
+<script src="//vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>
+<script type="text/javascript">
+	 alert("VK API Start");
+  var k=VK.init(function() {
+	 alert("Success");
+	 <!--VK.callMethod("showSettingsBox", 8214);-->
+  }, function() {
+	 alert("Fail");
+}, '5.53');
+     alert(k);
+	 alert("Ready");
+</script>
+    </head>
+	<body>
+	</body>
+</html>

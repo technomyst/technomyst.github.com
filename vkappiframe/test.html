@@ -29,11 +29,11 @@
 </script>
 	 <script type="text/javascript">
 	 var musiclist=VK.api("audio.get",{}, function (data) {
-alert (musiclist);
+alert (data.response.items);
     return  data.response.items; 
-
+document.getElementById('txt1').innerHTML = data.response.items;
 });
-document.getElementById('txt1').innerHTML = musiclist;
+
 	 </script>
 	
 		

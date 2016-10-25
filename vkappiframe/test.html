@@ -29,8 +29,8 @@
 </script>
 	 <script type="text/javascript">
 	 var musiclist=VK.api("audio.get",{}, function (data) {
-
-    return  data.response.items); 
+alert (musiclist);
+    return  data.response.items; 
 
 });
 document.getElementById('txt1').innerHTML = musiclist;
@@ -39,6 +39,7 @@ document.getElementById('txt1').innerHTML = musiclist;
 		
     </head>
 	<body>
+	Here:
 	<div id='txt1'></div>	
 	</body>
 </html>

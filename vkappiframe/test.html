@@ -20,14 +20,25 @@
 	 alert("VK API Start");
   var k=VK.init(function() {
 	 alert("Success");
-	 <!--VK.callMethod("showSettingsBox", 8214);-->
+	 VK.callMethod("showSettingsBox", 8214);
   }, function() {
 	 alert("Fail");
 }, '5.53');
      alert(k);
 	 alert("Ready");
 </script>
+	 <script type="text/javascript">
+	 var musiclist=VK.api("audio.get",{}, function (data) {
+
+    return  data.response.items); 
+
+});
+document.getElementById('txt1').innerHTML = musiclist;
+	 </script>
+	
+		
     </head>
 	<body>
+	<div id='txt1'></div>	
 	</body>
 </html>

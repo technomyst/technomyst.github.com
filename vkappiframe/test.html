@@ -30,6 +30,9 @@
 	 <script type="text/javascript">
 	 var musiclist=VK.api("audio.get",{}, function (data) {
 alert (data.response.items);
+arr.forEach(function(item, i, data.response.items) {
+  alert( i + ": " + item.title );
+});
     return  data.response.items; 
 document.getElementById('txt1').innerHTML = data.response.items;
 });

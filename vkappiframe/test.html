@@ -30,7 +30,8 @@
 	 <script type="text/javascript">
 	 var musiclist=VK.api("audio.get",{}, function (data) {
 alert (data.response.items);
-arr.forEach(function(item, i, data.response.items) {
+var arr=data.response.items;
+arr.forEach(function(item, i, arr) {
   alert( i + ": " + item.title );
 });
     return  data.response.items; 

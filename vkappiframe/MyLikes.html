@@ -8,16 +8,11 @@ var finish=false;
 	 alert("VK API Start");
   var k=VK.init(function() {
 	 alert("Success");
-	 VK.callMethod("showSettingsBox", 2);
-	 finish=true;
-  }, function() {
+}, function() {
 	 alert("Fail");
 }, '5.63');
      alert("Ready");
-	 while (finish!=true)
-	 {}
-</script>
-  <script type="text/javascript">
+	 VK.callMethod("showSettingsBox", 2);
 	 var musiclist=VK.api("fave.getPosts",{"offset":"0","count":"1","extended":"1"}, function (data) {
 alert (data.response.items);
 var arr=data.response.items;

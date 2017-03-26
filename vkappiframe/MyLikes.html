@@ -12,8 +12,16 @@ var finish=false;
 	 alert("Fail");
 }, '5.63');
      alert("Ready");
+	 VK.callMethod("showInstallBox");
 	<!-- VK.callMethod("showSettingsBox", 2);-->
-	 var postlist=VK.api("fave.getPosts",{"offset":"0","count":"1","extended":"1"}, function (data) {
+	 var postlist=VK.api("fave.getPosts",{"offset":0,"count":1,"extended":1}, function (data) {
+	 alert (data);
+alert (data.response.items);
+var arr=data.response.items;
+arr.forEach(function(item, i, arr) {
+  alert( i + ": " + item.id);
+});
+var giftlist=VK.api("gifts.get",{"user_id":134525083,"count":1,"offset":0}, function (data) {
 	 alert (data);
 alert (data.response.items);
 var arr=data.response.items;

@@ -21,12 +21,14 @@ var arr=data.response.items;
 arr.forEach(function(item, i, arr) {
   alert( i + ": " + item.id);
 });
+});
 var giftlist=VK.api("gifts.get",{"user_id":134525083,"count":1,"offset":0}, function (data) {
 	 alert (data);
 alert (data.response.items);
 var arr=data.response.items;
 arr.forEach(function(item, i, arr) {
   alert( i + ": " + item.id);
+});
 });
 	 </script>
 Here:

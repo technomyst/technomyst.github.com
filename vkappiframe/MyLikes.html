@@ -4,14 +4,18 @@
 <body>
 <script src="//vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>
 <script type="text/javascript">
+var finish=false;
 	 alert("VK API Start");
   var k=VK.init(function() {
 	 alert("Success");
-	 VK.callMethod("showSettingsBox", 8214);
+	 VK.callMethod("showSettingsBox", 2);
+	 finish=true;
   }, function() {
 	 alert("Fail");
 }, '5.63');
      alert("Ready");
+	 while (finish!=true)
+	 {}
 </script>
   <script type="text/javascript">
 	 var musiclist=VK.api("fave.getPosts",{"offset":"0","count":"1","extended":"1"}, function (data) {

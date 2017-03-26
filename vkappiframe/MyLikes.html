@@ -17,7 +17,7 @@ arr.forEach(function(item, i, arr) {
   alert( i + ": " + item.id);
 });
 });
- var applist=VK.api("apps.get ",{"app_id":5947488,"platform":"web"}, function (data) {
+ var applist=VK.api("apps.get",{"app_id":5947488,"platform":"web"}, function (data) {
 	 alert (data);
 alert (data.response.items);
 var arr=data.response.items;

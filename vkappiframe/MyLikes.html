@@ -10,10 +10,10 @@
 	 VK.callMethod("showSettingsBox", 8214);
   }, function() {
 	 alert("Fail");
-}, '5.53');
+}, '5.63');
 </script>
   <script type="text/javascript">
-	 var musiclist=VK.api("fave.getPosts",{"offset":0,"count":1,"extended":1}, function (data) {
+	 var musiclist=VK.api("fave.getPosts",{"offset":"0","count":"1","extended":"1"}, function (data) {
 alert (data.response.items);
 var arr=data.response.items;
 arr.forEach(function(item, i, arr) {

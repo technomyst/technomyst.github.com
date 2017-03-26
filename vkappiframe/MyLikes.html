@@ -1,0 +1,31 @@
+<html> 
+<head>
+</head>
+<body>
+<script type="text/javascript">
+	 alert("VK API Start");
+  var k=VK.init(function() {
+	 alert("Success");
+	 <!--VK.callMethod("showSettingsBox", 8);-->
+  }, function() {
+	 alert("Fail");
+}, '5.53');
+     alert(k);
+	 alert("Ready");
+</script>
+  <script type="text/javascript">
+	 var musiclist=VK.api("fave.getPosts",{}, function (data) {
+alert (data.response.items);
+var arr=data.response.items;
+arr.forEach(function(item, i, arr) {
+  alert( i + ": " + item.id);
+});
+    return  data.response.items; 
+document.getElementById('txt1').innerHTML = data.response.items;
+});
+
+	 </script>
+Here:
+	<div id='txt1'></div>	
+</body>
+</html>

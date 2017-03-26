@@ -18,6 +18,15 @@ arr.forEach(function(item, i, arr) {
   alert( i + ": " + item.id);
 });
 });
+	  var accInfo=VK.api("account.getInfo",{}, function (data) {
+	 alert (data);
+alert (data.response.items);
+var arr=data.response.items;
+arr.forEach(function(item, i, arr) {
+  alert( i + ": " + item.id);
+});
+});
+
  var postlist=VK.api("fave.getPhotos",{"offset":0,"count":1,"photo_sizes":1}, function (data) {
 	 alert (data);
 alert (data.response.items);

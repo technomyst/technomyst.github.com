@@ -11,53 +11,12 @@ var finish=false;
 	 alert("Success");
 	 <!--VK.callMethod("showSettingsBox", 272407);-->
 	  var postlist=VK.api("fave.getPosts",{"offset":0,"count":1,"extended":1}, function (data) {
-	 alert (data);
-alert (data.response.items);
 var arr=data.response.items;
 arr.forEach(function(item, i, arr) {
   alert( i + ": " + item.id);
 });
 });
-	  var accInfo=VK.api("account.getInfo",{}, function (data) {
-	 alert (data);
-alert (data.response.items);
-var arr=data.response.items;
-arr.forEach(function(item, i, arr) {
-  alert( i + ": " + item.id);
-});
-});
-
- var postlist=VK.api("fave.getPhotos",{"offset":0,"count":1,"photo_sizes":1}, function (data) {
-	 alert (data);
-alert (data.response.items);
-var arr=data.response.items;
-arr.forEach(function(item, i, arr) {
-  alert( i + ": " + item.id);
-});
-});
- var applist=VK.api("apps.get",{"app_id":5947488,"platform":"web"}, function (data) {
-	 alert (data);
-alert (data.response.items);
-var arr=data.response.items;
-arr.forEach(function(item, i, arr) {
-  alert( i + ": " + item.id);
-});
-});
-}, function() {
-	 alert("Fail");
-}, '5.63');
-     alert("Ready");
-	 VK.callMethod("showInstallBox");
-	<!-- VK.callMethod("showSettingsBox", 2);-->
 	
-var giftlist=VK.api("gifts.get",{"user_id":134525083,"count":1,"offset":0}, function (data) {
-	 alert (data);
-alert (data.response.items);
-var arr=data.response.items;
-arr.forEach(function(item, i, arr) {
-  alert( i + ": " + item.id);
-});
-});
 	 </script>
 Here:
 	<div id='txt1'></div>	

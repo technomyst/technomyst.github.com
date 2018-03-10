@@ -1,0 +1,39 @@
+﻿body {
+}
+#Container {
+    margin:auto;
+}
+#DivCardField {
+    display: table;
+}
+#DivMessage {
+    display: table;
+}
+
+div.card {
+    width: 40px;
+    height: 40px;
+    border: solid;
+    border-width: 2px;
+    background-color: hotpink;
+    float: left;
+    text-align: center;
+    vertical-align: central;
+    padding: 10px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+div.closed {
+    background-color: deeppink;
+    border-color: hotpink;
+}
+div.opened {
+    background-color: white;
+    border-color: deepskyblue;
+}
+
+div.row {
+    background-color: pink;
+    clear:both;
+}

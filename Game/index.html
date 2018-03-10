@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ПРИВЕТ!</title>
+    <link href="CSS/Main.css" rel="stylesheet">
+</head>
+<body>
+    <!--Поле для карточек-->
+    <!--<canvas height='500' width='500' id='CardField'>Обновите браузер</canvas>-->
+    <div ID="DivCardField">
+    </div>
+    <div ID="DivMessage"> я тут
+    </div>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script language="Javascript">
+        class Card {
+
+            constructor(name, value) {
+                this.name = name;
+                this.value = value;
+                this.isOpen = false;
+                this.isOut = false;
+                this.divCard = null
+            }
+
+            Open() {
+                alert("Карточка" + this.name + " открыта!");
+            }
+            Close() {
+                alert("Карточка" + this.name + " закрыта!");
+            }
+
+        }
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        //let user = new User("Вася");
+        //user.sayHi(); // Вася
+
+
+        var TimerCardOpenedAlone = [];
+        var rows = 6, columns = 6;
+
+        var arr = new Array(rows * columns);
+        for (var i = 0; i < (rows * columns) / 2; i++) {
+            arr[i * 2] = (i + 1);
+            arr[i * 2 + 1] = (i + 1);
+        }
+        //alert(arr);
+        for (var i = (rows * columns) - 1; i >= 1; i--) {
+            var j = getRandomInt(0, i + 1);
+            // обменять значения data[j] и data[i]
+            var temp = arr[j];
+            arr[j] = arr[i];
+            arr[i] = temp;
+        }
+
+        //alert(arr);
+        //for (var i = 0; i < rows; i++) {
+        //    var r = getRandomInt(i, max);
+        //}
+        //var field = new Array(rows);
+        // var maxValue = (rows * columns) / 2;
+        // getRandomInt(1,(rows * columns) / 2);
+        //заполянем массив-поле карточками
+        // Создать многомерный массив
+        var field = new Array(rows);		// В таблице 10 строк
+
+        for (var i = 0; i < field.length; i++) { field[i] = new Array(columns); }
+
+
+
+        for (var i = 0; i < rows; i++) {
+
+            for (var j = 0; j < columns; j++) {
+                //помещаем карточки на поле
+                field[i][j] = new Card("Card" + i.toString() + j.toString());
+            }
+        }
+
+        //Визуализация
+        //var grField = document.getElementById("CardField");
+        //ctx = example.getContext('2d');
+        //ctx.fillRect(0, 0, example.width, example.height);
+        //Визуализаяция div'ами
+        //Рисуем поле
+        var divField = document.getElementById('DivCardField');
+
+
+
+        for (var i = 0; i < field.length; i++) {
+
+            var divCardRow = document.createElement('div');
+            divCardRow.className = 'row';
+            divField.appendChild(divCardRow);
+            for (var j = 0; j < field.length; j++) {
+                //помещаем карточки на поле
+                var divCard = document.createElement('div');
+                divCard.className = 'card closed';
+                divCard.id = field[i][j].name;
+
+                //Событие клика
+
+
+
+
+                field[i][j] = new Card("Card" + i.toString() + j.toString(), arr[(i * columns + j)]);
+
+                divCard.innerText = field[i][j].value.toString();
+                field[i][j].divCard = divCard;
+                divCardRow.appendChild(divCard);
+            }
+        }
+
+        $(document).on('click', '.card.closed', function () {
+
+            // alert('Clicked');
+            //$(this).addClass("opened").removeClass("closed").delay(5000).addClass("closed").removeClass("opened");
+            //$(this).delay(5000);
+            //Получаем карту в массиве из интерфейса
+            if (GetOpenedCards() >= 2) { return; }
+            var card = null;
+            for (var i = 0; i < rows; i++) {
+
+                for (var j = 0; j < columns; j++) {
+                    //помещаем карточки на поле
+                    //field[i][j] = new Card("Card" + i.toString() + j.toString());
+                    if (field[i][j].name == this.id) {
+                        card = field[i][j];
+                    }
+                }
+            }
+            //Если карта не выбыла, то проверяем ее
+            if (!card.isOut) {
+
+                $(this).addClass("opened").removeClass("closed");
+                card.isOpen = true;
+                CheckState(field, card);
+                var TimerId = setTimeout(function (e, card) {
+                    if (!card.isOut && card.isOpen) {
+                        $(e).addClass("closed").removeClass("opened");
+                        card.isOpen = false;
+                    }
+                }, 5000, this, card);
+                TimerCardOpenedAlone.push(TimerId);
+            }
+
+            //$(this).switchClass("opened", "closed", 1000, easeInOutQuad).dealy(1000).switchClass("closed", "opened", 1000, easeInOutQuad);
+        });
+
+        //Проверка соответсвия условия
+        function CheckState(field, card) {
+            var flagIsFind = false;
+            var CountOpenedCard = 0;
+            var openedCards = [];
+            for (var i = 0; i < rows; i++) {
+
+                for (var j = 0; j < columns; j++) {
+                    //помещаем карточки на поле
+                    //field[i][j] = new Card("Card" + i.toString() + j.toString());
+                    if (field[i][j].isOpen == true && field[i][j].isOut == false) {
+                        openedCards.push(field[i][j]);
+                        //CountOpenedCard++;
+                    }
+                    if (field[i][j].name != card.name && field[i][j].value == card.value && field[i][j].isOpen == card.isOpen) {
+                        field[i][j].isOut = true;
+                        card.isOut = true;
+                        flagIsFind = true;
+                        $('#DivMessage').text('УРА!')
+                        var TimerId = setTimeout(function () {
+                            //if (!card.isOut && card.isOpen) {
+                                $('#DivMessage').text('');
+                            //}
+                        }, 1500, this, card);
+                        
+                    }
+
+                }
+
+            }
+            if (!flagIsFind && openedCards.length > 1) {
+                setTimeout(function (card, openedCards) {
+                    for (var i = 0; i < openedCards.length; i++) {
+                        if (!openedCards[i].isOut) {
+                            $(openedCards[i].divCard).addClass("closed").removeClass("opened");
+                            openedCards[i].isOpen = false;
+                        }
+                    }
+                    for (var i = 0; i < TimerCardOpenedAlone.length; i++) {
+                        clearTimeout(TimerCardOpenedAlone);
+                    }
+                    //$(card.divCard).addClass("closed").removeClass("opened");
+                    //card.isOpen = false;
+
+                }, 1000, card, openedCards);
+            }
+        }
+
+        function GetOpenedCards() {
+            var openedCards = [];
+            for (var i = 0; i < rows; i++) {
+
+                for (var j = 0; j < columns; j++) {
+                    //помещаем карточки на поле
+                    //field[i][j] = new Card("Card" + i.toString() + j.toString());
+                    if (field[i][j].isOpen == true && field[i][j].isOut == false) {
+                        openedCards.push(field[i][j]);
+                        //CountOpenedCard++;
+                    }
+
+                }
+
+            }
+            return openedCards.length;
+
+        }
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>

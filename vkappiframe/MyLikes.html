@@ -9,6 +9,9 @@
 	 
   var k=VK.init(function() {
 	 alert("Success");
+}, function() {
+	 alert("Fail");
+}, '5.63');
 	 <!--VK.callMethod("showSettingsBox", 272407);-->
 	  var postlist=VK.api("fave.getPosts",{"offset":0,"count":1,"extended":1}, function (data) {
 var arr=data.response.items;
@@ -16,7 +19,7 @@ arr.forEach(function(item, i, arr) {
   alert( i + ": " + item.id);
 });
 });
-});
+
 	
 	 </script>
 Here:
